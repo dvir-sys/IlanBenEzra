@@ -1,0 +1,8 @@
+div.box{
+    text-align: center;
+    display: inline-block;
+}
+
+div.box > *{
+    display: block;
+}
