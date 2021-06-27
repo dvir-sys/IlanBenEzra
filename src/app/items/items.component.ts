@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../_models/item';
+import { ItemsService } from '../_services/items.service';
 
 @Component({
   selector: 'app-items',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemsComponent implements OnInit {
 
-  constructor() { }
+  items: String[] = [];
+
+  constructor(public itemsService: ItemsService) { }
 
   ngOnInit(): void {
+    this.fetchActiveItems();
+  }
+
+  fetchActiveItems(){
+    this.itemsService.fetchActiveItems().subscribe(items => {
+      this.items = items.map(item=>item.caption);
+    });
   }
 
 }

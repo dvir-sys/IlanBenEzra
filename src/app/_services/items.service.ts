@@ -1,0 +1,27 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ReplaySubject } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Item } from '../_models/item';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class ItemsService {
+  baseUrl = 'https://localhost:5001/api/';
+  todoItems: Array<string> = new Array<string>();
+
+  constructor(private http: HttpClient) { }
+
+  fetchActiveItems() {
+    return this.http.get<Item[]>(this.baseUrl + 'items')
+    /*.pipe(
+      map((item: any) => {
+        if (item) {
+          this.todoItems.push(JSON.stringify(item));
+        }
+      })
+    )*/;
+  }
+}
