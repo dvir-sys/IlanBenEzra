@@ -7,13 +7,15 @@ import { NavComponent } from './nav/nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatIconModule} from '@angular/material/icon';
 import { BoxComponent } from './box/box.component';
+import { ItemsComponent } from './items/items.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     DashboardComponent,
-    BoxComponent
+    BoxComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,
