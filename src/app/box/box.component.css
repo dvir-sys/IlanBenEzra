@@ -1,8 +1,9 @@
 div.box{
     text-align: center;
     display: inline-block;
+    margin: 0 40px;
 }
 
-div.box > *{
+div.box > span{
     display: block;
 }
