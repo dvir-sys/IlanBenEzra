@@ -16,8 +16,8 @@ import { ListDetailComponent } from './list-detail/list-detail.component';
   declarations: [
     AppComponent,
     NavComponent,
-    DashboardComponent,
     BoxComponent,
+    DashboardComponent,
     ItemsComponent,
     ListsComponent,
     ListDetailComponent

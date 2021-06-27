@@ -16,6 +16,7 @@ const routes: Routes = [
   
   {path: 'lists/:id', component: ListDetailComponent},
   {path: 'lists/:id/edit', component: ListDetailComponent},
+  {path: 'lists/new', component: ListDetailComponent},
   {path: '**', component: DashboardComponent, pathMatch: 'full'} //TODO: Change to Error message page! 
 ];
 
