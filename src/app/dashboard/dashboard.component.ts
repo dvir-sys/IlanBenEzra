@@ -18,4 +18,12 @@ export class DashboardComponent implements OnInit {
     // console.log(homePage);
   }
 
+  goToLists(){
+    window.location.href += "/lists";
+  }
+
+  goToItems(){
+    window.location.href += "/items";
+  }
+
 }

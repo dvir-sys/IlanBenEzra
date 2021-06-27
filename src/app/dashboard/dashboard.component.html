@@ -2,10 +2,10 @@
     <h1 class="main-title">Todo App</h1>
     <div class="buttons">
         <button type="button" class="btn btn-success">Create new list</button>
-        <button type="button" class="btn btn-primary">View all lists</button>
-        <button type="button" class="btn btn-warning">View all items</button>
+        <button (click)="goToLists()" type="button" class="btn btn-primary">View all lists</button>
+        <button (click)="goToItems()" type="button" class="btn btn-warning">View all items</button>
     </div>
-    <div class="icons">
+    <div class="icons" >
         <app-box [icon_name]= boxes[0].icon_name [number]= boxes[0].number [text]= boxes[0].text></app-box>
         <app-box [icon_name]= boxes[1].icon_name [number]= boxes[1].number [text]= boxes[1].text></app-box>
         <app-box [icon_name]= boxes[2].icon_name [number]= boxes[2].number [text]= boxes[2].text></app-box>
