@@ -8,13 +8,19 @@ import { NavComponent } from './nav/nav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatIconModule} from '@angular/material/icon';
 import { BoxComponent } from './box/box.component';
+import { ItemsComponent } from './items/items.component';
+import { ListsComponent } from './lists/lists.component';
+import { ListDetailComponent } from './list-detail/list-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     DashboardComponent,
-    BoxComponent
+    BoxComponent,
+    ItemsComponent,
+    ListsComponent,
+    ListDetailComponent
   ],
   imports: [
     BrowserModule,
