@@ -1,1 +1,5 @@
-<p>list-detail works!</p>
+<h1>{{list.text}}</h1>
+<mat-icon>{{list.icon_name}}</mat-icon>
+<div *ngFor="let item of list.items;">
+    <app-item></app-item>
+ </div>
