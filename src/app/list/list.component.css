@@ -1,0 +1,8 @@
+
+.list{
+    width: 120px;
+    height: 90px;
+    border: 1px solid #000000;
+    margin:10px auto;
+    cursor: pointer;
+}

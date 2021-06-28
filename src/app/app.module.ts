@@ -12,6 +12,8 @@ import { BoxComponent } from './box/box.component';
 import { ItemsComponent } from './items/items.component';
 import { ListsComponent } from './lists/lists.component';
 import { ListDetailComponent } from './list-detail/list-detail.component';
+import { ListComponent } from './list/list.component';
+import { ItemComponent } from './item/item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { ListDetailComponent } from './list-detail/list-detail.component';
     DashboardComponent,
     ItemsComponent,
     ListsComponent,
-    ListDetailComponent
+    ListDetailComponent,
+    ListComponent,
+    ItemComponent
   ],
   imports: [
     BrowserModule,
