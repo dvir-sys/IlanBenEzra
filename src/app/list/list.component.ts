@@ -9,6 +9,7 @@ export class ListComponent implements OnInit {
   @Input() icon_name = '';
   @Input() text = '';
   @Input() id = 0;
+  @Input() color = '';
   constructor() { }
 
   ngOnInit(): void {
