@@ -26,4 +26,8 @@ export class DashboardComponent implements OnInit {
     window.location.href += "/items";
   }
 
+  createNewList(){
+    window.location.href += "lists/-1/edit";
+  }
+
 }

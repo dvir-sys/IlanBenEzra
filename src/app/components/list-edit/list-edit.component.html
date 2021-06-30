@@ -1,0 +1,45 @@
+
+<div class="form-div">
+
+    <form class="flex-column" [formGroup]="formGroup" *ngIf="formGroup" (ngSubmit)="save()">
+
+        <div>
+            <label>Caption: </label>
+            <input type="text" formControlName="caption">
+        </div>
+
+        <div>
+            <label>Description: </label>
+            <textarea rows="3" formControlName="description"></textarea>
+        </div>
+
+        <div>
+            <label>Icon: </label>
+            <!--
+            <select name="icons" formControlName="imageUrl">
+                <option class="material-icons" value={{i}} *ngFor="let i of icons">
+                    {{i}}
+                </option>
+            </select>
+            -->
+        </div>
+
+        <div>
+            <label>Color: </label>
+            <!--
+            <select name="colors" formControlName="color">
+                <option [style.background-color]="i" value={{i}} *ngFor="let i of colors">
+                    {{i}}
+                </option>
+            </select>
+            -->
+        </div>
+
+        <div>
+            <button id="save-btn" [disabled]="formGroup.invalid">Save</button>
+        </div>
+
+
+
+    </form>
+</div>

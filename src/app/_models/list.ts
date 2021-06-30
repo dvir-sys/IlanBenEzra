@@ -1,6 +1,6 @@
 import { Item } from "./item";
 
-export interface List {
+export interface TaskList {
     id: number,
     items: Array<Item>,
     title: string,

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { List } from '../_models/list';
+import { Observable } from 'rxjs';
+import { TaskList } from '../_models/list';
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,12 @@ import { List } from '../_models/list';
 export class ListsService {
   baseUrl = 'https://localhost:5001/api/';
 
-  private _todoLists: Array<List> = new Array<List>();
+  private _todoLists: Array<TaskList> = new Array<TaskList>();
 
-  public get todoLists(): Array<List> {
+  public get todoLists(): Array<TaskList> {
     return this._todoLists;
   }
-  public set todoLists(value: Array<List>) {
+  public set todoLists(value: Array<TaskList>) {
     this._todoLists = value;
   }
   
@@ -21,6 +22,34 @@ export class ListsService {
   constructor(private http: HttpClient) { }
 
   fetchTaskLists() {
-    return this.http.get<List[]>(this.baseUrl + 'TodoList');
+    return this.http.get<TaskList[]>(this.baseUrl + 'TodoList');
   }
+
+  fetchTaskList(id: string) {
+    return this.http.get<TaskList>(this.baseUrl + 'TodoList/' + id);
+  }
+
+  addNewTaskList(newList: TaskList): Observable<TaskList> {
+    let url = this.baseUrl + 'TodoList/';
+
+    return this.http.put<TaskList>(url, newList);
+  }
+
+/*
+  fetchTaskList(id: string) : List {
+    let list: List;
+    this.http.get<List>(this.baseUrl + 'TodoList/' + id)
+    .subscribe(list => 
+      {
+        return {
+          id: list.id,
+          items: list.items,
+          description: list.description,
+          image: list.image,
+          title: list.title,
+          color: list.color
+        };
+      });
+    
+  }*/
 }

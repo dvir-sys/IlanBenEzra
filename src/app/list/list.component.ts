@@ -16,6 +16,6 @@ export class ListComponent implements OnInit {
   }
 
   clickList(){
-    window.location.href += '/' +this.id +  '/edit'
+    window.location.href += '/' +this.id;// +  '/edit'
   }
 }
