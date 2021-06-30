@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { COLORS } from 'src/app/_models/data/colors';
+import { MATERIAL_ICONS } from 'src/app/_models/data/icons';
 import { TaskList } from 'src/app/_models/list';
 import { ListsService } from 'src/app/_services/lists.service';
 
@@ -23,11 +25,14 @@ export class ListEditComponent implements OnInit {
 
   formGroup!: FormGroup;
 
+  icons: string[] = MATERIAL_ICONS;
+  colors: string[] = COLORS;
   
   constructor(
     private formBuilder: FormBuilder,
     public listsService: ListsService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.listId = this.route.snapshot.paramMap.get('id') || '-1';
@@ -62,7 +67,7 @@ export class ListEditComponent implements OnInit {
       title: [list.title, [Validators.required]],
       color: [list.color, [Validators.required]],
       description: [list.description, [Validators.required, Validators.minLength(30)/*, wordsValidator(10) */]],
-      imageUrl: [list.image, [Validators.required]]
+      image: [list.image, [Validators.required]]
     });
     /*
     if (list.id == -1)
@@ -72,17 +77,27 @@ export class ListEditComponent implements OnInit {
     */
   }
   
-  async save() {
+  async save() {/*
     if (this.formGroup.value.id == -1) {
       delete this.formGroup.value.id;
-      let res = await this.listsService.addNewTaskList(this.formGroup.value).toPromise();
-      console.log("edit list - new listId ",res.id);
-      this.formGroup.value.id = res.id;
-    }/*
+      //console.log("edit list - new listId ",res.id);
+      //this.formGroup.value.id = res.id;
+    }
+    
     else
       await this.dataService.saveList(this.formGroup.value).toPromise();
-
-    this.formGroup.navigate(['lists', this.formGroup.value.id]);*/
+    */
+    let id = await this.listsService.editTaskList(this.formGroup.value).subscribe(id => {
+      this.list.id = id;
+    });
+    this.router.navigate(['lists', /*this.formGroup.value.*/id]);
   }
 
+  /*
+  fetchActiveItems(){
+    this.itemsService.fetchActiveItems().subscribe(items => {
+      this.items = items.map(item=>item.caption);
+    });
+  }
+*/
 }

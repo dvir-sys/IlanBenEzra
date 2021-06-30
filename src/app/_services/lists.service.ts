@@ -29,10 +29,9 @@ export class ListsService {
     return this.http.get<TaskList>(this.baseUrl + 'TodoList/' + id);
   }
 
-  addNewTaskList(newList: TaskList): Observable<TaskList> {
+  editTaskList(newList: TaskList): Observable<number> {
     let url = this.baseUrl + 'TodoList/';
-
-    return this.http.put<TaskList>(url, newList);
+    return this.http.put<number>(url, newList);
   }
 
 /*

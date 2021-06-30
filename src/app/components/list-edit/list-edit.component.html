@@ -4,8 +4,8 @@
     <form class="flex-column" [formGroup]="formGroup" *ngIf="formGroup" (ngSubmit)="save()">
 
         <div>
-            <label>Caption: </label>
-            <input type="text" formControlName="caption">
+            <label>Title (Caption): </label>
+            <input type="text" formControlName="title">
         </div>
 
         <div>
@@ -15,28 +15,29 @@
 
         <div>
             <label>Icon: </label>
-            <!--
-            <select name="icons" formControlName="imageUrl">
-                <option class="material-icons" value={{i}} *ngFor="let i of icons">
-                    {{i}}
+            <!-- -->
+            <select name="icons" formControlName="image">
+                <option class="material-icons" value={{icon}} *ngFor="let icon of icons">
+                    {{icon}}
                 </option>
             </select>
-            -->
+            
         </div>
 
         <div>
             <label>Color: </label>
-            <!--
+            <!-- -->
             <select name="colors" formControlName="color">
-                <option [style.background-color]="i" value={{i}} *ngFor="let i of colors">
-                    {{i}}
+                <option [style.color]="color" value={{color}} *ngFor="let color of colors">
+                    {{color}}
                 </option>
             </select>
-            -->
+            
         </div>
 
         <div>
-            <button id="save-btn" [disabled]="formGroup.invalid">Save</button>
+            <!--button id="save-btn" [disabled]="formGroup.invalid">Save</button-->
+            <button id="save-btn">Save</button>
         </div>
 
 

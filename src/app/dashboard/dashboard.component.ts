@@ -19,11 +19,11 @@ export class DashboardComponent implements OnInit {
   }
 
   goToLists(){
-    window.location.href += "/lists";
+    window.location.href += "lists";
   }
 
   goToItems(){
-    window.location.href += "/items";
+    window.location.href += "items";
   }
 
   createNewList(){
