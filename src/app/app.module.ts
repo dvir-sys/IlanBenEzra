@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { ListsComponent } from './lists/lists.component';
 import { ListDetailComponent } from './list-detail/list-detail.component';
 import { ListComponent } from './list/list.component';
 import { ItemComponent } from './item/item.component';
+import { ListEditComponent } from './components/list-edit/list-edit.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ItemComponent } from './item/item.component';
     ListsComponent,
     ListDetailComponent,
     ListComponent,
-    ItemComponent
+    ItemComponent,
+    ListEditComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ import { ItemComponent } from './item/item.component';
     MatIconModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [MatIconModule],
   bootstrap: [AppComponent]
