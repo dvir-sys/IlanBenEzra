@@ -14,6 +14,16 @@ export class ItemsService {
 
   constructor(private http: HttpClient) { }
 
+  
+
+  fetchAllItemsCount() {
+    return this.http.get<number>(this.baseUrl + 'items/count');
+  }
+
+  fetchActiveItemsCount() {
+    return this.http.get<number>(this.baseUrl + 'items/active-items-count');
+  }
+
   fetchActiveItems() {
     return this.http.get<Item[]>(this.baseUrl + 'items')
     /*.pipe(

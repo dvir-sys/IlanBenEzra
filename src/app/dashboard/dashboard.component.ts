@@ -1,6 +1,8 @@
 //import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
+import { ItemsService } from '../_services/items.service';
+import { ListsService } from '../_services/lists.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -11,11 +13,26 @@ export class DashboardComponent implements OnInit {
   boxes = [{icon_name: "list", number: "0", text: "Lists"}, 
   {icon_name: "adjust", number: "0", text: "Todo Items"}, 
   {icon_name: "pageview", number: "0", text: "Active Items"} ] 
- // constructor(private http: HttpClient) { }
+  
+  constructor(public listsService: ListsService,
+              public itemsService: ItemsService) { }
 
-  async ngOnInit() {
-    // var homePage = await this.http.get("https://localhost:5001/api/Home").toPromise();
-    // console.log(homePage);
+  ngOnInit(): void {
+    this.fetchListsCount();
+    this.fetchAllItemsCount();
+    this.fetchActiveItemsCount();
+  }
+
+  fetchListsCount(){
+    this.listsService.fetchTaskListsCount().subscribe(count => this.boxes[0].number = count.toString());
+  }
+
+  fetchAllItemsCount(){
+    this.itemsService.fetchAllItemsCount().subscribe(count => this.boxes[1].number = count.toString());
+  }
+
+  fetchActiveItemsCount(){
+    this.itemsService.fetchActiveItemsCount().subscribe(count => this.boxes[2].number = count.toString());
   }
 
   goToLists(){
