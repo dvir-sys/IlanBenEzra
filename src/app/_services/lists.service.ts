@@ -21,6 +21,10 @@ export class ListsService {
 
   constructor(private http: HttpClient) { }
 
+  fetchTaskListsCount() {
+    return this.http.get<number>(this.baseUrl + 'TodoList/count');
+  }
+
   fetchTaskLists() {
     return this.http.get<TaskList[]>(this.baseUrl + 'TodoList');
   }
