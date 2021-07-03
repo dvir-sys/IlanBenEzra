@@ -1,5 +1,26 @@
 <h1>{{list.title}}</h1>
 <mat-icon>{{list.image}}</mat-icon>
-<div *ngFor="let item of list.items;">
-    <app-item></app-item>
- </div>
+<!--div *ngFor="let item of list.items;">
+    <app-item>{{item.caption}}</app-item>
+</div-->
+
+
+
+
+<div class="items-area flex-col">
+
+    <app-item *ngFor="let item of list.items" [isCompleted]="item.isCompleted"
+        [caption]="item.caption" (click)="completeItem(item)">
+    </app-item>
+
+    <div id="newItem" class="item-line flex-row">
+        <mat-icon color="red" class="pointer">check_box_outline_blank</mat-icon>
+        <input type="text margin" [formControl]="newItemFormControl" placeholder=" Add new task">
+        <button 
+                [disabled]="newItemFormControl.invalid" 
+                (click)="addNewItemToList()">
+            <mat-icon >add</mat-icon>
+        </button>
+    </div>
+
+</div>

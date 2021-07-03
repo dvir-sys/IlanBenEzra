@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TaskList } from '../_models/list';
+import { ListItem } from '../_models/listItem';
+import { ItemsService } from '../_services/items.service';
 import { ListsService } from '../_services/lists.service';
 
 @Component({
@@ -9,7 +12,7 @@ import { ListsService } from '../_services/lists.service';
   styleUrls: ['./list-detail.component.css']
 })
 export class ListDetailComponent implements OnInit {
-  // TODO: Get from server
+  
   list : TaskList = {
     id: -1,
     items: [],
@@ -21,12 +24,36 @@ export class ListDetailComponent implements OnInit {
   //listId: string ;
   // {icon_name: 'shopping', text: 'Shopping', items: [{caption: 'Tomato', completed: false}, {caption: 'Potato', completed: true}]};
   
+  newItemFormControl!: FormControl;
+  newItemCation: string = '';
+
   constructor(public listsService: ListsService,
-              private route: ActivatedRoute) { }
+              public itemsService: ItemsService,
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     //this.listId = this.route.snapshot.paramMap.get('id');
+    
+    this.newItemFormControl = this.formBuilder.control(this.newItemCation, [Validators.minLength(10)]);
+
     this.fetchList();
+  }
+  
+  async completeItem(item: ListItem) {
+    await this.itemsService.markItemAsCompleted(item).toPromise();
+  }
+
+  
+
+  fetchItemsByListId(id: number) {
+    //this.items$ = this.dataService.getItemsOfList(this.listId);
+    
+    this.itemsService.fetchItemsByListId(id)
+    .subscribe(items => {
+      //items.map(item=>this.list.items.push(item));
+      this.list.items = items;
+    });
   }
 
   fetchList(){
@@ -43,8 +70,22 @@ export class ListDetailComponent implements OnInit {
           title: list.title,
           color: list.color
         };
+        this.fetchItemsByListId(list.id);
       });
   }
+
+  async addNewItemToList() 
+  {let item = {
+      caption: this.newItemFormControl.value,
+      listId: this.list.id,
+      isCompleted: false
+    } as ListItem;
+
+    await this.itemsService.addNewItem(item).toPromise();
+    this.newItemFormControl.reset('');
+    this.fetchItemsByListId(this.list.id);
+  }
+
 /*
   fetchListNew(){
     let idStr = this.route.snapshot.paramMap.get('id');

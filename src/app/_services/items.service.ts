@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Item } from '../_models/item';
+import { ListItem } from '../_models/listItem';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +25,7 @@ export class ItemsService {
   }
 
   fetchActiveItems() {
-    return this.http.get<Item[]>(this.baseUrl + 'items')
+    return this.http.get<ListItem[]>(this.baseUrl + 'items')
     /*.pipe(
       map((item: any) => {
         if (item) {
@@ -34,4 +34,19 @@ export class ItemsService {
       })
     )*/;
   }
+
+  fetchItemsByListId(id: number) {
+    return this.http.get<ListItem[]>(this.baseUrl + 'items/from-list/' + id);
+  }
+  
+  addNewItem(item: ListItem): Observable<ListItem> {
+    return this.http.post<ListItem>(this.baseUrl + 'items/add/', item);
+  }
+
+  markItemAsCompleted(item: ListItem) {
+    item.isCompleted = true;
+    return this.http.put<ListItem>(this.baseUrl + 'items/complete/', item);
+  }
+
+  
 }
