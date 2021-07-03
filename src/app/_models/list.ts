@@ -1,8 +1,8 @@
-import { Item } from "./item";
+import { ListItem } from "./listItem";
 
 export interface TaskList {
     id: number,
-    items: Array<Item>,
+    items: Array<ListItem>,
     title: string,
     description: string,
     color: string,
